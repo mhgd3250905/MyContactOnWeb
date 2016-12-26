@@ -1,0 +1,15 @@
+/*这里主要描述这个blog*/
+input {
+    width: 100%;
+    height: 50px;
+    padding: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 2px;
+    border-color: #EEEEEE;
+    border-style: groove;
+}
+
+div.jumbotron{
+    margin: 0px;
+}
