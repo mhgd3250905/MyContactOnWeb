@@ -1,3 +1,4 @@
+
 /**
  * Created by admin on 2016/12/26.
  */
@@ -8,27 +9,50 @@ $(document).ready(function () {
 
     //初始化UI
     initUI();
+    showImage()
 
-    //设置文本框触发事件：1 change 2 keydown事件
-    var input=$("#keyTest");
-    input.on('input',function () {
-        //文字改变之后我们就要对其进行检索
-        var inputText=input.val();
-        //第一步判断文字规格
-        var datas=getData();
-
-        $("tbody tr")[0].style.display="none";
-        $("tbody tr")[1].style.display="none";
-
-        for(var i=0;i<datas.length;i++){
-            if(datas[i].search(inputText)!=-1){
-                $("tbody tr")[i].style.display="inline";
-            }
-        }
-
-    })
 
 })
+
+/*
+* 在鼠标移动到工号的时候自动弹出一个图像
+* */
+function showImage() {
+    //获取到内容栏目的行
+    var mTbody=document.getElementsByTagName("tbody")[0];
+    var mTrs=mTbody.getElementsByTagName("tr");
+
+    //遍历所有行
+    for(var i=0;i<mTrs.length;i++){
+        //获取第一个表格中第一个单元格
+        var firstTd=mTrs[i].getElementsByTagName("td")[0];
+
+        //获取单元格中的文本
+        var firstP=mTrs[i].getElementsByTagName("td")[0].getElementsByTagName("p")[0];
+        var emplid=firstP.innerHTML;
+        //在单元格中添加一个div其中包含着对应各自工号的img图片
+        var mDiv=document.createElement("div");
+        mDiv.setAttribute("class","photoHide");
+        var mImg=document.createElement("img");
+        mImg.setAttribute("src",emplid+".jpg");
+        mDiv.appendChild(mImg);
+        firstTd.appendChild(mDiv);
+
+        //对单元格中的文本设置鼠标移入移除class修改
+        firstP.onmouseover=function () {
+            //鼠标移入的时候div设置class为photoShow，图片显示
+            var parentTr=this.parentNode;
+            var initDiv=this.parentNode.getElementsByTagName("div")[0];
+            initDiv.setAttribute("class","photoShow");
+        }
+        firstP.onmouseout=function () {
+            //鼠标移出的时候div设置class为photoHide，图片隐藏
+            var parentTr=this.parentNode;
+            var initDiv=this.parentNode.getElementsByTagName("div")[0];
+            initDiv.setAttribute("class","photoHide");
+        }
+    }
+}
 
 //这里设置UI
 function initUI() {

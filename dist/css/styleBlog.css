@@ -13,3 +13,23 @@ input {
 div.jumbotron{
     margin: 0px;
 }
+
+div.photoHide{
+    width: 20px;
+    height: 10px;
+    display: none;
+}
+
+div.photoShow:hover{
+    width: 20px;
+    height: 10px;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    display: block;
+}
+
+
+tr:hover{
+    background-color: #c3d7ff;
+}
